@@ -49,17 +49,7 @@ This is a dictionary of extra environment variables for the container.
     ombi_docker_additional_options:
       restart_policy: unless-stopped
 
-Another dictionary, this time of additional options for the container. By default, this sets the container to start on boot unless it was previously stopped. 
-
-    ombi_config:
-      ApiKey: "abc123"
-      UrlBase: "example.com"
-      LaunchBrowser: "False"
-      AnalyticsEnabled: "False"
-
-This is not currently in use - the applicable code is commented out in the task. 
-
-NOTE: There have been variables added for a media user. Please see the vars/main.yml file. 
+NOTE: There have been variables added for a media user. Please see the vars/main.yml file for an example. 
 
 Dependencies
 ------------
