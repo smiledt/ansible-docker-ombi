@@ -1,0 +1,20 @@
+---
+# vars file for ombi_docker
+
+ombi_name: ombi
+ombi_image: linuxserver/ombi
+ombi_ports:
+  - 3579:3579
+ombi_config_directory: /opt/ombi                                                                  
+ombi_environment_variables:
+  PUID: "{{ media_uid }}"
+  PGID: "{{ media_gid }}"
+  TZ: America/Chicago
+
+ombi_docker_additional_options:
+  restart_policy: unless-stopped
+
+media_user: mediasvc
+media_uid: 1099
+media_group: media
+media_gid: 1099

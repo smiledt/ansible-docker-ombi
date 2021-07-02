@@ -1,0 +1,33 @@
+---
+# tasks file for docker-ombi
+
+- name: Create Ombi directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0777
+    owner: "{{ media_user }}"
+    group: "{{ media_group }}"
+  loop:
+    - "{{ ombi_config_directory }}"
+
+
+- name: Set Docker container parameters
+  set_fact:
+    ombi_container_parameters:
+      name: "{{ ombi_name }}"
+      image: "{{ ombi_image }}"
+      state: started
+      published_ports: "{{ ombi_ports }}"
+      volumes:
+        - "{{ ombi_config_directory }}:/config"
+      env: "{{ ombi_environment_variables }}"
+
+- name: Create ombi container
+  docker_container: "{{ ombi_container_parameters | combine(ombi_docker_additional_options) }}"
+  register: ombi_container
+
+- name: Wait for ombi start
+  wait_for:
+    port: "{{ ombi_ports[0].split(':')[0] }}"
+    host: "{{ ombi_container.container.NetworkSettings.IPAddress }}"
