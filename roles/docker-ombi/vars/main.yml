@@ -7,8 +7,8 @@ ombi_ports:
   - 3579:3579
 ombi_config_directory: /opt/ombi                                                                  
 ombi_environment_variables:
-  PUID: "{{ media_uid }}"
-  PGID: "{{ media_gid }}"
+  PUID: '"{{ media_uid }}"'
+  PGID: '"{{ media_gid }}"'
   TZ: America/Chicago
 
 ombi_docker_additional_options:
