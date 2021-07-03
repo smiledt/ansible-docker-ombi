@@ -1,7 +1,7 @@
 # This playbook deploys a Sonarr docker container on a docker host.
 
-- name: Deploy the Sonarr Container.
+- name: Deploy the Ombi Container.
   hosts: rr
   become: true
   roles:
-    - role: docker-sonarr
+  - role: docker-ombi
